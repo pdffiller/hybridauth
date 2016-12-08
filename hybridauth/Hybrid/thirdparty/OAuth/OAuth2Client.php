@@ -233,7 +233,16 @@ class OAuth2Client
 
     if( $type == "POST" ){
       curl_setopt($ch, CURLOPT_POST, 1);
-      if($params) curl_setopt( $ch, CURLOPT_POSTFIELDS, $params );
+      $paramsString="";
+      if($params) {
+        foreach($params as $k=>$v){
+          $paramsString.=$k."=";
+          $paramsString.=$v."&";
+        }
+        curl_setopt( $ch, CURLOPT_POSTFIELDS, $paramsString );
+      }
+      // curl_setopt($ch, CURLOPT_POST, 1);
+      // if($params) curl_setopt( $ch, CURLOPT_POSTFIELDS, $params );
     }
     if( $type == "DELETE" ){
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
