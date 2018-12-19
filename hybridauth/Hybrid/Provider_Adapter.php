@@ -300,11 +300,6 @@ class Hybrid_Provider_Adapter {
 			$callback_url = '/';
 		}
 
-		// remove some unneeded stored data
-		Hybrid_Auth::storage()->delete("hauth_session.{$this->id}.hauth_return_to");
-		Hybrid_Auth::storage()->delete("hauth_session.{$this->id}.hauth_endpoint");
-		Hybrid_Auth::storage()->delete("hauth_session.{$this->id}.id_provider_params");
-
 		// back to home
 		Hybrid_Auth::redirect($callback_url);
 	}
